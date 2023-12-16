@@ -6,6 +6,7 @@ export default {
       colors: {
         primary: '#f66a54',
         'primary-light': '#fcd2cd',
+        'primary-bg-light': '#FEEAE8',
       },
       content: {
         logotext: "url('./src/assets/MyBooks.svg')",

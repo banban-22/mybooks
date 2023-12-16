@@ -14,7 +14,7 @@ passport.deserializeUser((id, done) => {
       done(null, user);
     })
     .catch((err) => {
-      done(null, err);
+      done(err, null);
     });
 });
 
@@ -47,7 +47,7 @@ passport.use(
   })
 );
 
-const signup = ({ name, email, password, req }) => {
+function signup({ name, email, password, req }) {
   const user = new User({ name, email, password });
   if (!email || !password) {
     throw new Error('Please provide an email and password');
@@ -71,7 +71,7 @@ const signup = ({ name, email, password, req }) => {
         });
       });
     });
-};
+}
 
 // const login = async ({ email, password, req }) => {
 //   return new Promise((resolve, reject) => {

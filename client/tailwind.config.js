@@ -7,6 +7,9 @@ export default {
         primary: '#f66a54',
         'primary-light': '#fcd2cd',
       },
+      content: {
+        logotext: "url('./src/assets/MyBooks.svg')",
+      },
     },
   },
   plugins: [],

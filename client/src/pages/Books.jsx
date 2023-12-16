@@ -6,7 +6,6 @@ import { CURRENT_USER } from '../queries/CurrentUser';
 const Books = () => {
   const navigate = useNavigate();
   const { loading, error, data, refetch } = useQuery(CURRENT_USER);
-  console.log(data);
 
   useEffect(() => {
     if (data.user) navigate('/books');

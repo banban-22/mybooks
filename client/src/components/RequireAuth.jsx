@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { CURRENT_USER } from '../queries/CurrentUser';
 import Loader from './Loader';
-import { useEffect, useState } from 'react';
 
 const RequireAuth = ({ children }) => {
   const [initialized, setInitialized] = useState(false);
@@ -16,6 +16,7 @@ const RequireAuth = ({ children }) => {
 
     if (error || !data?.user) {
       console.log('User not authenticated. Redirecting to login...');
+      console.log('error', error);
       navigate('/login');
     }
   }, [error, data, navigate, initialized]);

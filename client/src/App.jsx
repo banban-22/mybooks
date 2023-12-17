@@ -1,4 +1,10 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import RequireAuth from './components/RequireAuth';
 import AppLayout from './components/AppLayout';
@@ -13,38 +19,60 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/books',
-        element: (
-          <RequireAuth>
-            <Books />
-          </RequireAuth>
-        ),
-      },
-      { path: '/signup', element: <Signup /> },
-      { path: '/login', element: <Login /> },
-    ],
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <AppLayout />,
+//     children: [
+//       {
+//         path: '/',
+//         element: <Home />,
+//       },
+//       {
+//         path: '/books',
+//         element: (
+//           <RequireAuth>
+//             <Books />
+//           </RequireAuth>
+//         ),
+//       },
+//       { path: '/signup', element: <Signup /> },
+//       { path: '/login', element: <Login /> },
+//     ],
+//   },
+// ]);
+
+// function App() {
+//   return (
+//     <>
+//       <ApolloProvider client={client}>
+//         <RouterProvider router={router}>
+//           <AppLayout />
+//         </RouterProvider>
+//       </ApolloProvider>
+//     </>
+//   );
+// }
 
 function App() {
   return (
-    <>
-      <ApolloProvider client={client}>
-        <RouterProvider router={router}>
-          <AppLayout />
-        </RouterProvider>
-      </ApolloProvider>
-    </>
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/books"
+            element={
+              <RequireAuth>
+                <Books />
+              </RequireAuth>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </Router>
+    </ApolloProvider>
   );
 }
 

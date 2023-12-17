@@ -5,6 +5,7 @@ const mutation = gql`
     logout {
       id
       email
+      name
     }
   }
 `;

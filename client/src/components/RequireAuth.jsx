@@ -16,7 +16,7 @@ const RequireAuth = ({ children }) => {
 
     if (error || !data?.user) {
       console.log('User not authenticated. Redirecting to login...');
-      console.log('error', error);
+      console.log(data.user);
       navigate('/login');
     }
   }, [error, data, navigate, initialized]);

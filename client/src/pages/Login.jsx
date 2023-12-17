@@ -5,7 +5,7 @@ import mutation from '../mutations/Login';
 import { CURRENT_USER } from '../queries/CurrentUser';
 
 import Input from '../components/Input';
-import { MdPerson, MdOutlineEmail, MdLock } from 'react-icons/md';
+import { MdOutlineEmail, MdLock } from 'react-icons/md';
 
 const Login = ({ user }) => {
   const navigate = useNavigate();

@@ -44,7 +44,7 @@ const Header = () => {
             className="px-10 flex gap-3 items-center cursor-pointer"
             onClick={handleClickMenu}
           >
-            {data?.user?.name}
+            {data?.user?.name ? data.user.name : ''}
             <IoIosArrowDown />
           </div>
         </div>

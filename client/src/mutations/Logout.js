@@ -1,6 +1,6 @@
 import { gql } from 'graphql-tag';
 
-export default gql`
+const mutation = gql`
   mutation {
     logout {
       id
@@ -8,3 +8,5 @@ export default gql`
     }
   }
 `;
+
+export default mutation;

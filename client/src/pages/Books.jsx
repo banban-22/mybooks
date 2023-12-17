@@ -11,6 +11,7 @@ const Books = () => {
   useEffect(() => {
     if (data.user) navigate('/books');
   }, [data.user, navigate]);
+
   return <div>Books</div>;
 };
 export default Books;

@@ -31,22 +31,25 @@ const Header = () => {
     setToggleMenu(!toggleMenu);
   };
 
+  if (!data || !data.user) {
+    return null;
+  }
+
   return (
     <>
-      {data?.user && (
-        <div className="w-full h-full flex justify-between items-center mx-auto py-5 bg-primary-light">
-          <p className="px-10 text-4xl font-bold tracking-widest">MyBooks</p>
-          <div>
-            <div
-              className="px-10 flex gap-3 items-center cursor-pointer"
-              onClick={handleClickMenu}
-            >
-              {data?.user?.name}
-              <IoIosArrowDown />
-            </div>
+      <div className="w-full h-full flex justify-between items-center mx-auto py-5 bg-primary-light">
+        <p className="px-10 text-4xl font-bold tracking-widest">MyBooks</p>
+        <div>
+          <div
+            className="px-10 flex gap-3 items-center cursor-pointer"
+            onClick={handleClickMenu}
+          >
+            {data?.user?.name}
+            <IoIosArrowDown />
           </div>
         </div>
-      )}
+      </div>
+
       {toggleMenu && (
         <div className="absolute right-6 top-16 border rounded bg-white">
           <ul className="">

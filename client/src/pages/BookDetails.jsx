@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import StarRating from '../components/StarRating';
 
 const BookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [bookDetails, setBookDetails] = useState(null);
   const API_ENDPOINT = `https://www.googleapis.com/books/v1/volumes/${id}`;
 
@@ -22,9 +23,24 @@ const BookDetails = () => {
     fetchBookDetails();
   }, [id]);
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const renderDescription = () => {
+    return { __html: bookDetails.volumeInfo.description };
+  };
+
   return (
     <div>
       <Header />
+      <button
+        className="mt-5 w-4/5 text-start mx-auto flex"
+        onClick={handleGoBack}
+      >
+        {' '}
+        &lt; Back
+      </button>
       {bookDetails && (
         <div className="flex gap-10 w-4/5 justify-center items-center mx-auto mt-10 ">
           <div className="w-2/5 bg-[#F9F9F8]">
@@ -41,20 +57,26 @@ const BookDetails = () => {
             <p className="text-xl text-gray-400">
               {bookDetails.volumeInfo.authors.join(', ')}
             </p>
-            <div className="flex gap-2">
-              <StarRating
-                max={5}
-                current={bookDetails.volumeInfo.averageRating}
-              />
-              <div className="text-gray-400">&#124;</div>
+            {bookDetails.volumeInfo.averageRating ? (
+              <div className="flex gap-2">
+                <StarRating
+                  max={5}
+                  current={bookDetails.volumeInfo.averageRating}
+                />
+                <div className="text-gray-400">&#124;</div>
+                <p className="text-gray-400">
+                  {bookDetails.volumeInfo.publishedDate}
+                </p>
+              </div>
+            ) : (
               <p className="text-gray-400">
                 {bookDetails.volumeInfo.publishedDate}
               </p>
-            </div>
+            )}
             <hr className="mt-5" />
             <div className="mt-5">
               <p className="text-lg font-semibold">Overview</p>
-              <p>{bookDetails.volumeInfo.description}</p>
+              <p dangerouslySetInnerHTML={renderDescription()} />
             </div>
           </div>
         </div>

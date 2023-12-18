@@ -26,15 +26,15 @@ const BookDetails = () => {
     <div>
       <Header />
       {bookDetails && (
-        <div className="flex gap-10 w-4/5 justify-center items-center mx-auto my-auto h-screen">
-          <div className="w-full">
+        <div className="flex gap-10 w-4/5 justify-center items-center mx-auto mt-10 ">
+          <div className="w-2/5 bg-[#F9F9F8]">
             <img
               src={bookDetails.volumeInfo.imageLinks.thumbnail}
               alt={bookDetails.volumeInfo.title}
-              className="w-full"
+              className="w-full p-10"
             />
           </div>
-          <div>
+          <div className="w-3/5">
             <h2 className="text-4xl font-black">
               {bookDetails.volumeInfo.title}
             </h2>
@@ -51,6 +51,7 @@ const BookDetails = () => {
                 {bookDetails.volumeInfo.publishedDate}
               </p>
             </div>
+            <hr className="mt-5" />
             <div className="mt-5">
               <p className="text-lg font-semibold">Overview</p>
               <p>{bookDetails.volumeInfo.description}</p>

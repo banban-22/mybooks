@@ -74,25 +74,35 @@ const Books = () => {
 
       <div className="grid grid-cols-5 grid-flow-row gap-4 w-4/5 mx-auto">
         {bookData.map((item) => (
-          <div key={item.id} className="border max-w-sm py-4 px-5 rounded-lg">
+          <Link
+            key={item.id}
+            to={`/books/${item.id}`}
+            className="border max-w-sm py-4 px-5 rounded-lg"
+          >
             <div className="flex flex-col items-center text-center">
               <img src={item.volumeInfo.imageLinks?.smallThumbnail} alt="" />
               <p className="text-lg font-bold">{item.volumeInfo.title}</p>
               <p>{item.volumeInfo.authors || 'NA'}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-4">
-        <ReactPaginate
-          pageCount={Math.ceil(totalItems / itemsPerPage)}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
-          onPageChange={handlePageClick}
-          containerClassName="pagination flex gap-3"
-          activeClassName="active"
-        />
-      </div>
+      {totalItems > 10 && (
+        <div className="flex justify-center mt-4">
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            previousLabel="<"
+            pageCount={Math.ceil(totalItems / itemsPerPage)}
+            pageRangeDisplayed={5}
+            marginPagesDisplayed={2}
+            onPageChange={handlePageClick}
+            containerClassName="pagination flex gap-3 items-center"
+            pageClassName="border p-3 w-10 h-10 rounded-full flex items-center justify-center hover:cursor-pointer"
+            activeClassName="active bg-primary text-white"
+          />
+        </div>
+      )}
     </div>
   );
 };

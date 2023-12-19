@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import StarRating from '../components/StarRating';
+import AddBooks from '../components/AddBooks';
 
 const BookDetails = () => {
-  const { id } = useParams();
+  const { id, userId } = useParams();
   const navigate = useNavigate();
   const [bookDetails, setBookDetails] = useState(null);
   const API_ENDPOINT = `https://www.googleapis.com/books/v1/volumes/${id}`;
@@ -38,7 +39,6 @@ const BookDetails = () => {
         className="mt-5 w-4/5 text-start mx-auto flex"
         onClick={handleGoBack}
       >
-        {' '}
         &lt; Back
       </button>
       {bookDetails && (
@@ -57,22 +57,17 @@ const BookDetails = () => {
             <p className="text-xl text-gray-400">
               {bookDetails.volumeInfo.authors.join(', ')}
             </p>
-            {bookDetails.volumeInfo.averageRating ? (
-              <div className="flex gap-2">
-                <StarRating
-                  max={5}
-                  current={bookDetails.volumeInfo.averageRating}
-                />
-                <div className="text-gray-400">&#124;</div>
-                <p className="text-gray-400">
-                  {bookDetails.volumeInfo.publishedDate}
-                </p>
-              </div>
-            ) : (
+            <div className="flex gap-2">
+              <StarRating
+                max={5}
+                current={bookDetails.volumeInfo.averageRating || 0}
+              />
+              <div className="text-gray-400">&#124;</div>
               <p className="text-gray-400">
                 {bookDetails.volumeInfo.publishedDate}
               </p>
-            )}
+            </div>
+
             <hr className="mt-5" />
             <div className="mt-5">
               <p className="text-lg font-semibold">Overview</p>
@@ -81,6 +76,8 @@ const BookDetails = () => {
           </div>
         </div>
       )}
+
+      <AddBooks bookDetails={bookDetails} userId={userId} />
     </div>
   );
 };

@@ -1,18 +1,25 @@
 import { gql } from 'graphql-tag';
 
 const GET_BOOKS = gql`
-  query getBooks {
+  query GetBooks {
     books {
       id
       title
+      summary
+      description
       author
+      created_at
+      status
+      user {
+        id
+        name
+      }
     }
   }
 `;
 
 const GET_BOOK = gql`
-query{
-  getBook($id: ID!){
+  query getBook($id: ID!) {
     book(id: $id) {
       id
       title
@@ -20,40 +27,41 @@ query{
       description
       author
       status
-      user{
+      user {
         id
         name
         email
       }
     }
   }
-}`;
+`;
 
 const ADD_BOOK = gql`
-  mutation {
+  mutation addBook(
+    $title: String!
+    $summary: String!
+    $description: String!
+    $author: String!
+    $status: BookStatus!
+    $userId: ID!
+  ) {
     addBook(
-      $title: String!
-      $summary: String!
-      $description: String!
-      $author: String!
-      $status: BookStatus!
-      $userId: ID!
-    ){
-        addBook(
-             title: $title
-             summary: $summary
-             description: $description
-             author: $author
-             status: $status
-             userId: $userId
-             ){
-        title
-        summary
-        description
-        author
-        status
-        userId
-        }   
+      title: $title
+      summary: $summary
+      description: $description
+      author: $author
+      status: $status
+      userId: $userId
+    ) {
+      title
+      summary
+      description
+      author
+      status
+      user {
+        id
+        name
+      }
     }
   }
 `;

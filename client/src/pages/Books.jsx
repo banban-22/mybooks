@@ -41,7 +41,7 @@ const Books = () => {
   const debounceFetchBook = debounce(fetchBook, 1000);
 
   useEffect(() => {
-    if (data.user) navigate('/books');
+    if (data.user) navigate(`/books/${data.user.id}`);
   }, [data.user, navigate]);
 
   const handleTitleChange = (e) => {
@@ -76,7 +76,7 @@ const Books = () => {
         {bookData.map((item) => (
           <Link
             key={item.id}
-            to={`/books/${item.id}`}
+            to={`/books/${data.user?.id}/${item.id}`}
             className="border max-w-sm py-4 px-5 rounded-lg"
           >
             <div className="flex flex-col items-center text-center">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import mutation from '../mutations/Login';
 import { CURRENT_USER } from '../queries/CurrentUser';
@@ -9,6 +9,7 @@ import { MdOutlineEmail, MdLock } from 'react-icons/md';
 
 const Login = ({ user }) => {
   const navigate = useNavigate();
+  const { userId, id } = useParams();
   const [loginMutation] = useMutation(mutation, {
     refetchQueries: [{ CURRENT_USER }],
   });
@@ -25,8 +26,8 @@ const Login = ({ user }) => {
   };
 
   useEffect(() => {
-    if (user) navigate('/books');
-  }, [user, navigate]);
+    if (id) navigate(`/books/${id}`);
+  }, [userId, id, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault(e);
@@ -41,7 +42,7 @@ const Login = ({ user }) => {
       console.log('User Logged in:', data.login);
 
       if (data.login) {
-        navigate('/books');
+        navigate(`/books/${data.login.id}`);
       }
     } catch (error) {
       console.error('Signup failed: ', error);

@@ -62,7 +62,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
-            path="/books"
+            path="/books/:userId"
             element={
               <RequireAuth>
                 <Books />
@@ -70,7 +70,7 @@ function App() {
             }
           />
           <Route
-            path="/books/:id"
+            path="/books/:userId/:id"
             element={
               <RequireAuth>
                 <BookDetails />

@@ -148,24 +148,32 @@ const mutation = new GraphQLObjectType({
               completed: { value: 'Completed' },
             },
           }),
+          defaultValue: 'Want to read',
         },
         userId: { type: GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args, req) {
-        if (!req.isAuthenticated()) {
-          throw new Error('User is not authenticated');
+      resolve: async (parent, args, req) => {
+        console.log('Mutation resolver called with args: ', args);
+        try {
+          if (!req.isAuthenticated()) {
+            throw new Error('User is not authenticated');
+          }
+          const defaultCreatedAt = new Date();
+          const book = new Book({
+            title: args.title,
+            summary: args.summary,
+            description: args.description,
+            author: args.author,
+            created_at: args.created_at || defaultCreatedAt,
+            status: args.status,
+            userId: args.userId,
+          });
+          const savedBook = await book.save();
+          return savedBook;
+        } catch (error) {
+          console.error('Error adding book: ', error.message);
+          throw new Error('Error adding the book. Please try again.');
         }
-        const defaultCreatedAt = new Date();
-        const book = new Book({
-          title: args.title,
-          summary: args.summary,
-          description: args.description,
-          author: args.author,
-          created_at: args.created_at || defaultCreatedAt,
-          status: args.status,
-          userId: req.user.id,
-        });
-        return book.save();
       },
     },
 

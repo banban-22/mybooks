@@ -10,7 +10,7 @@ const Rating = ({ max, current }) => {
         <Star key={index} style={{ color: 'gold' }} />
       ))}
       {[...Array(darkStar)].map((_, index) => (
-        <Star key={index} style={{ color: 'gray' }} />
+        <Star key={index} style={{ color: '#cfcfcf' }} />
       ))}
     </div>
   );

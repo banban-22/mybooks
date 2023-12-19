@@ -73,11 +73,10 @@ const BookDetails = () => {
               <p className="text-lg font-semibold">Overview</p>
               <p dangerouslySetInnerHTML={renderDescription()} />
             </div>
+            <AddBooks bookDetails={bookDetails} userId={userId} />
           </div>
         </div>
       )}
-
-      <AddBooks bookDetails={bookDetails} userId={userId} />
     </div>
   );
 };

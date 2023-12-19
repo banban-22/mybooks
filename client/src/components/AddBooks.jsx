@@ -45,6 +45,13 @@ const AddBooks = ({ bookDetails }) => {
     }
   };
 
-  return <button onClick={handleAddToMyBooks}>Add To My Books</button>;
+  return (
+    <button
+      onClick={handleAddToMyBooks}
+      className="bg-primary rounded-xl px-8 py-4 mt-5 text-start hover:opacity-80"
+    >
+      Add To My Books
+    </button>
+  );
 };
 export default AddBooks;

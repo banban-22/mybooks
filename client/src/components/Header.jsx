@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { IoIosArrowDown } from 'react-icons/io';
 import { CURRENT_USER } from '../queries/CurrentUser';
@@ -7,11 +7,14 @@ import mutation from '../mutations/Logout';
 
 const Header = ({ handleStatusFilter }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
   const { data } = useQuery(CURRENT_USER);
   const [logoutMutation] = useMutation(mutation, {
     refetchQueries: [{ CURRENT_USER }],
   });
+  const isBooksPage = location.pathname.startsWith('/books');
+  const buttonText = isBooksPage ? 'MyBooks' : 'Search Books';
 
   const handleClickLogout = async () => {
     try {
@@ -29,6 +32,14 @@ const Header = ({ handleStatusFilter }) => {
 
   const handleClickMenu = () => {
     setToggleMenu(!toggleMenu);
+  };
+
+  const handleClickSearchButton = () => {
+    if (isBooksPage) {
+      navigate('/mybooks/:userId');
+    } else {
+      navigate('/books/userId');
+    }
   };
 
   const handleStatusButtonClick = (status) => handleStatusFilter(status);
@@ -66,6 +77,7 @@ const Header = ({ handleStatusFilter }) => {
             className="px-10 flex gap-3 items-center cursor-pointer"
             onClick={handleClickMenu}
           >
+            <button onClick={handleClickSearchButton}>{buttonText}</button>
             {data?.user?.name ? data.user.name : 'Username'}
             <IoIosArrowDown />
           </div>

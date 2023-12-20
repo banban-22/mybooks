@@ -38,7 +38,7 @@ const Header = ({ handleStatusFilter }) => {
     if (isBooksPage) {
       navigate('/mybooks/:userId');
     } else {
-      navigate('/books/userId');
+      navigate('/books/:userId');
     }
   };
 
@@ -77,7 +77,12 @@ const Header = ({ handleStatusFilter }) => {
             className="px-10 flex gap-3 items-center cursor-pointer"
             onClick={handleClickMenu}
           >
-            <button onClick={handleClickSearchButton}>{buttonText}</button>
+            <button
+              className="rounded-lg px-3 py-3 bg-primary-bg-light "
+              onClick={handleClickSearchButton}
+            >
+              {buttonText}
+            </button>
             {data?.user?.name ? data.user.name : 'Username'}
             <IoIosArrowDown />
           </div>

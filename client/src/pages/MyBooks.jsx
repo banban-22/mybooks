@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_BOOKS } from '../mutations/bookQueries';
 import { CURRENT_USER } from '../queries/CurrentUser';
@@ -14,10 +15,14 @@ const MyBooks = () => {
     error: userError,
     data: userData,
   } = useQuery(CURRENT_USER);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData && userData.user) navigate(`/mybooks/${userData.user.id}`);
+  }, [userData, navigate]);
 
   if (loading || userLoading) return <Loader />;
   if (error || userError) return <div>{error.message}</div>;
-  console.log(data.books);
 
   const currentUser = userData.user;
   const userBooks = data.books.filter(

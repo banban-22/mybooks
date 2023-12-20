@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import Modal from './Modal';
+import MyBooksDetails from './MyBooksDetails';
 
 const MyBookCard = ({ book }) => {
-  const [modal, setModal] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const { author, title, image, description, status, summary, created_at } =
     book;
 
@@ -24,6 +26,13 @@ const MyBookCard = ({ book }) => {
       <h2 className="text-2xl font-bold">{title}</h2>
       <div className="text-xl text-gray-500">{author}</div>
       <div className="text-sm" dangerouslySetInnerHTML={renderDescription()} />
+      <button onClick={() => setModalShow(true)}>Show More</button>
+
+      {modalShow && (
+        <Modal onClose={() => setModalShow(false)}>
+          <MyBooksDetails onClose={() => setModalShow(false)} />
+        </Modal>
+      )}
     </div>
   );
 };

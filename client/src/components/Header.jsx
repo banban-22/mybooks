@@ -5,7 +5,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { CURRENT_USER } from '../queries/CurrentUser';
 import mutation from '../mutations/Logout';
 
-const Header = () => {
+const Header = ({ handleStatusFilter }) => {
   const navigate = useNavigate();
   const [toggleMenu, setToggleMenu] = useState(false);
   const { data } = useQuery(CURRENT_USER);
@@ -31,6 +31,8 @@ const Header = () => {
     setToggleMenu(!toggleMenu);
   };
 
+  const handleStatusButtonClick = (status) => handleStatusFilter(status);
+
   if (!data || !data.user) {
     return null;
   }
@@ -39,12 +41,32 @@ const Header = () => {
     <>
       <div className="w-full h-full flex justify-between items-center mx-auto py-5 bg-primary-light">
         <p className="px-10 text-4xl font-bold tracking-widest">MyBooks</p>
+        <div className="flex gap-3">
+          <button
+            className="rounded-full px-3 bg-primary-bg-light cursor-pointer hover:opacity-70 focus:brightness-200 font-semibold"
+            onClick={() => handleStatusButtonClick('Want to read')}
+          >
+            Want to read
+          </button>
+          <button
+            className="rounded-full px-3 bg-primary-bg-light cursor-pointer hover:opacity-70 focus:brightness-200 font-semibold"
+            onClick={() => handleStatusButtonClick('Reading')}
+          >
+            Reading
+          </button>
+          <button
+            className="rounded-full px-3 bg-primary-bg-light cursor-pointer hover:opacity-70 focus:brightness-200 font-semibold"
+            onClick={() => handleStatusButtonClick('Completed')}
+          >
+            Completed
+          </button>
+        </div>
         <div>
           <div
             className="px-10 flex gap-3 items-center cursor-pointer"
             onClick={handleClickMenu}
           >
-            {data?.user?.name ? data.user.name : ''}
+            {data?.user?.name ? data.user.name : 'Username'}
             <IoIosArrowDown />
           </div>
         </div>

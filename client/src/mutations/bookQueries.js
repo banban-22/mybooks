@@ -5,6 +5,7 @@ const GET_BOOKS = gql`
     books {
       id
       title
+      image
       summary
       description
       author
@@ -23,6 +24,7 @@ const GET_BOOK = gql`
     book(id: $id) {
       id
       title
+      image
       summary
       description
       author
@@ -39,6 +41,7 @@ const GET_BOOK = gql`
 const ADD_BOOK = gql`
   mutation addBook(
     $title: String!
+    $image: String!
     $summary: String!
     $description: String!
     $author: String!
@@ -47,6 +50,7 @@ const ADD_BOOK = gql`
   ) {
     addBook(
       title: $title
+      image: $image
       summary: $summary
       description: $description
       author: $author
@@ -54,6 +58,7 @@ const ADD_BOOK = gql`
       userId: $userId
     ) {
       title
+      image
       summary
       description
       author
@@ -80,6 +85,7 @@ const UPDATE_BOOK = gql`
   mutation updateBook(
     $id: ID!
     $title: String!
+    $image: String!
     $summary: String!
     $description: String!
     $author: String!
@@ -89,6 +95,7 @@ const UPDATE_BOOK = gql`
     updateBook(
       id: $id
       title: $title
+      image: $image
       summary: $summary
       description: $description
       author: $author
@@ -97,6 +104,7 @@ const UPDATE_BOOK = gql`
     ) {
       id
       title
+      image
       summary
       description
       author

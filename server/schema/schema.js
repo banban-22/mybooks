@@ -31,6 +31,7 @@ const BookType = new GraphQLObjectType({
   name: 'Book',
   fields: () => ({
     id: { type: GraphQLID },
+    image: { type: GraphQLString },
     title: { type: GraphQLString },
     summary: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -135,6 +136,7 @@ const mutation = new GraphQLObjectType({
       type: BookType,
       args: {
         title: { type: GraphQLString },
+        image: { type: GraphQLString },
         summary: { type: GraphQLString },
         description: { type: GraphQLString },
         author: { type: GraphQLString },
@@ -161,6 +163,7 @@ const mutation = new GraphQLObjectType({
           const defaultCreatedAt = new Date();
           const book = new Book({
             title: args.title,
+            image: args.image,
             summary: args.summary,
             description: args.description,
             author: args.author,
@@ -189,6 +192,7 @@ const mutation = new GraphQLObjectType({
       type: BookType,
       args: {
         id: { type: GraphQLID },
+        image: { type: GraphQLString },
         title: { type: GraphQLString },
         summary: { type: GraphQLString },
         description: { type: GraphQLString },
@@ -212,6 +216,7 @@ const mutation = new GraphQLObjectType({
           {
             $set: {
               title: args.title,
+              image: args.image,
               summary: args.summary,
               description: args.description,
               author: args.author,

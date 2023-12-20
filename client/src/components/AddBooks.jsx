@@ -21,6 +21,7 @@ const AddBooks = ({ bookDetails }) => {
       const { data } = await addBookMutation({
         variables: {
           title: bookDetails.volumeInfo.title || '',
+          image: bookDetails.volumeInfo.imageLinks.thumbnail || '',
           summary: '',
           description: bookDetails.volumeInfo.description || '',
           author: bookDetails.volumeInfo.authors?.join(', '),

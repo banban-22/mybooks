@@ -11,6 +11,7 @@ import AppLayout from './components/AppLayout';
 import Home from './pages/Home';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
+import MyBooks from './pages/MyBooks';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 
@@ -74,6 +75,14 @@ function App() {
             element={
               <RequireAuth>
                 <BookDetails />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/mybooks/:userId/"
+            element={
+              <RequireAuth>
+                <MyBooks />
               </RequireAuth>
             }
           />

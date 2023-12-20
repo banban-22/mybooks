@@ -61,6 +61,7 @@ const BookDetails = () => {
               <StarRating
                 max={5}
                 current={bookDetails.volumeInfo.averageRating || 0}
+                disableInteraction={true}
               />
               <div className="text-gray-400">&#124;</div>
               <p className="text-gray-400">

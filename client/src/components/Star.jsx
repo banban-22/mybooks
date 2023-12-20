@@ -1,5 +1,11 @@
 const Star = (props) => {
-  const { style = {}, ...restProps } = props;
+  const {
+    style = {},
+    onClick,
+    onHover,
+    disableInteraction,
+    ...restProps
+  } = props;
   const { color = 'black', ...restStyle } = style;
 
   return (
@@ -8,6 +14,9 @@ const Star = (props) => {
       {...restProps}
       style={restStyle}
       viewBox="0 0 576 512"
+      onClick={disableInteraction ? null : onClick}
+      onMouseEnter={disableInteraction ? null : onHover}
+      onMouseLeave={() => onHover(null)}
     >
       <path
         fill={color}

@@ -30,7 +30,7 @@ const MyBookCard = ({ book }) => {
 
       {modalShow && (
         <Modal onClose={() => setModalShow(false)}>
-          <MyBooksDetails onClose={() => setModalShow(false)} />
+          <MyBooksDetails onClose={() => setModalShow(false)} book={book} />
         </Modal>
       )}
     </div>

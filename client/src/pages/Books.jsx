@@ -57,10 +57,18 @@ const Books = () => {
     debounceFetchBook();
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    debounceFetchBook();
+  };
+
   return (
     <div>
       <Header />
-      <form className="flex flex-col items-center aligns-center w-full mx-auto justify-center bg-primary-bg-light gap-4">
+      <form
+        className="flex flex-col items-center aligns-center w-full mx-auto justify-center bg-primary-bg-light gap-4"
+        onSubmit={handleFormSubmit}
+      >
         <Input
           icon={<RiSearchLine />}
           type="text"

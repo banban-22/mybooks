@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import StarRating from './StarRating';
+import EditMyBooks from './EditMyBooks';
 
 const MyBooksDetails = ({ book }) => {
   const { author, title, image, description, status, summary, created_at } =
@@ -45,6 +46,7 @@ const MyBooksDetails = ({ book }) => {
           </div>
           <p className="text-gray-400">Added at: {formatDate}</p>
           {/* <AddBooks book={book} userId={userId} /> */}
+          <EditMyBooks book={book} />
         </div>
       </div>
     </>

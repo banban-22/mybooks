@@ -89,8 +89,7 @@ const UPDATE_BOOK = gql`
     $summary: String!
     $description: String!
     $author: String!
-    $status: BookStatus!
-    $userId: ID!
+    $status: BookStatusUpdate
   ) {
     updateBook(
       id: $id
@@ -100,7 +99,6 @@ const UPDATE_BOOK = gql`
       description: $description
       author: $author
       status: $status
-      userId: $userId
     ) {
       id
       title

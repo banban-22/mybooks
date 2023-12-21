@@ -17,16 +17,17 @@ const MyBookCard = ({ book }) => {
   };
 
   return (
-    // status.trim() === 'Want to read' && (
-    <div className="gap-10 border p-5 h-72 rounded-xl">
-      {/* <div className="bg-primary-light rounded-full px-5 py-2 w-1/3 mt-5 text-center mx-auto text-xs">
-        {status}
-      </div> */}
+    <div className="border p-5 h-auto rounded-xl items-center justify-center flex flex-col text-center">
       <img src={image} alt={title} />
-      <h2 className="text-2xl font-bold">{title}</h2>
-      <div className="text-xl text-gray-500">{author}</div>
-      <div className="text-sm" dangerouslySetInnerHTML={renderDescription()} />
-      <button onClick={() => setModalShow(true)}>Show More</button>
+      <h2 className="text-lg font-bold">{title}</h2>
+      <div className="text-sm text-gray-500">{author}</div>
+      {/* <div className="text-sm" dangerouslySetInnerHTML={renderDescription()} /> */}
+      <button
+        onClick={() => setModalShow(true)}
+        className="w-full bg-primary-bg-light rounded-full mt-3 py-2 shadow-md"
+      >
+        Show More
+      </button>
 
       {modalShow && (
         <Modal onClose={() => setModalShow(false)}>
@@ -38,8 +39,3 @@ const MyBookCard = ({ book }) => {
 };
 
 export default MyBookCard;
-
-{
-  /* <div>{summary}</div>
-      <div>{created_at}</div> */
-}

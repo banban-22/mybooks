@@ -18,7 +18,11 @@ const MyBooks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userData && userData.user) navigate(`/mybooks/${userData.user.id}`);
+    if (userData && userData.user) {
+      const initialStatusFilter = 'Want to read';
+      setStatusFilter(initialStatusFilter);
+      navigate(`/mybooks/${userData.user.id}`);
+    }
   }, [userData, navigate]);
 
   if (loading || userLoading) return <Loader />;

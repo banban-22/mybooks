@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Modal from './Modal';
 import MyBooksDetails from './MyBooksDetails';
+import DeleteMyBooks from './DeleteMyBooks';
 
 const MyBookCard = ({ book }) => {
   const [modalShow, setModalShow] = useState(false);
-  const { author, title, image, description, status, summary, created_at } =
+  const { id, author, title, image, description, status, summary, created_at } =
     book;
+  console.log(id);
 
   const renderDescription = () => {
     const originalDescription = description;
@@ -17,7 +19,7 @@ const MyBookCard = ({ book }) => {
   };
 
   return (
-    <div className="border p-5 h-auto rounded-xl items-center justify-center flex flex-col text-center">
+    <div className="border p-5 h-auto rounded-xl items-center justify-center flex flex-col text-center relative">
       <img src={image} alt={title} />
       <h2 className="text-lg font-bold">{title}</h2>
       <div className="text-sm text-gray-500">{author}</div>
@@ -28,6 +30,8 @@ const MyBookCard = ({ book }) => {
       >
         Show More
       </button>
+
+      <DeleteMyBooks bookId={id} />
 
       {modalShow && (
         <Modal onClose={() => setModalShow(false)}>

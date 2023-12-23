@@ -21,7 +21,7 @@ const MyBooks = () => {
     if (userData && userData.user) {
       const initialStatusFilter = 'Want to read';
       setStatusFilter(initialStatusFilter);
-      navigate(`/mybooks/${userData.user.id}`);
+      navigate(`/mybooks/${userData.user.id}`, { replace: true });
     }
   }, [userData, navigate]);
 
@@ -38,6 +38,7 @@ const MyBooks = () => {
       : userBooks.filter((book) => book.status === statusFilter);
 
   const handleStatusFilter = (status) => setStatusFilter(status);
+  console.log(userBooks);
 
   return (
     <>

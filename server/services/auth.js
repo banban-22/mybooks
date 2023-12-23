@@ -47,6 +47,14 @@ passport.use(
   })
 );
 
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+};
+
 function signup({ name, email, password, req }) {
   const user = new User({ name, email, password });
   if (!email || !password) {
@@ -119,4 +127,4 @@ async function login({ email, password, req }) {
   });
 }
 
-module.exports = { signup, login };
+module.exports = { signup, login, isAuthenticated };

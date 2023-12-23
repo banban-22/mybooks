@@ -5,9 +5,18 @@ import DeleteMyBooks from './DeleteMyBooks';
 
 const MyBookCard = ({ book }) => {
   const [modalShow, setModalShow] = useState(false);
-  const { id, author, title, image, description, status, summary, created_at } =
-    book;
-  console.log(id);
+  const {
+    id,
+    author,
+    title,
+    image,
+    description,
+    rating,
+    status,
+    summary,
+    created_at,
+  } = book;
+  console.log(rating);
 
   const renderDescription = () => {
     const originalDescription = description;

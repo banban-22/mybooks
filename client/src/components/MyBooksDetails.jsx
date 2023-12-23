@@ -3,8 +3,16 @@ import StarRating from './StarRating';
 import EditMyBooks from './EditMyBooks';
 
 const MyBooksDetails = ({ book }) => {
-  const { author, title, image, description, status, summary, created_at } =
-    book;
+  const {
+    author,
+    title,
+    image,
+    description,
+    rating,
+    status,
+    summary,
+    created_at,
+  } = book;
   console.log(book);
   const [userRating, setUserRating] = useState(0);
 

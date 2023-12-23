@@ -38,7 +38,6 @@ const MyBooks = () => {
       : userBooks.filter((book) => book.status === statusFilter);
 
   const handleStatusFilter = (status) => setStatusFilter(status);
-  console.log(userBooks);
 
   return (
     <>

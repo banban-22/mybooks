@@ -3,6 +3,7 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
+  GraphQLFloat,
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull,
@@ -36,6 +37,7 @@ const BookType = new GraphQLObjectType({
     summary: { type: GraphQLString },
     description: { type: GraphQLString },
     author: { type: GraphQLString },
+    rating: { type: GraphQLFloat },
     created_at: { type: GraphQLDate },
     status: { type: GraphQLString },
     user: {
@@ -140,6 +142,7 @@ const mutation = new GraphQLObjectType({
         summary: { type: GraphQLString },
         description: { type: GraphQLString },
         author: { type: GraphQLString },
+        rating: { type: GraphQLFloat },
         created_at: { type: GraphQLDate },
         status: {
           type: new GraphQLEnumType({
@@ -167,6 +170,7 @@ const mutation = new GraphQLObjectType({
             summary: args.summary,
             description: args.description,
             author: args.author,
+            rating: args.rating,
             created_at: args.created_at || defaultCreatedAt,
             status: args.status,
             userId: args.userId,
@@ -197,6 +201,7 @@ const mutation = new GraphQLObjectType({
         summary: { type: GraphQLString },
         description: { type: GraphQLString },
         author: { type: GraphQLString },
+        rating: { type: GraphQLFloat },
         created_at: { type: GraphQLDate },
         status: {
           type: new GraphQLEnumType({
@@ -220,6 +225,7 @@ const mutation = new GraphQLObjectType({
               summary: args.summary,
               description: args.description,
               author: args.author,
+              rating: args.rating,
               created_at: args.created_at,
               status: args.status,
             },

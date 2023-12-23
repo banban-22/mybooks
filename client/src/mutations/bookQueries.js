@@ -9,6 +9,7 @@ const GET_BOOKS = gql`
       summary
       description
       author
+      rating
       created_at
       status
       user {
@@ -28,6 +29,7 @@ const GET_BOOK = gql`
       summary
       description
       author
+      rating
       status
       user {
         id
@@ -45,6 +47,7 @@ const ADD_BOOK = gql`
     $summary: String!
     $description: String!
     $author: String!
+    $rating: Float!
     $status: BookStatus!
     $userId: ID!
   ) {
@@ -54,6 +57,7 @@ const ADD_BOOK = gql`
       summary: $summary
       description: $description
       author: $author
+      rating: $rating
       status: $status
       userId: $userId
     ) {
@@ -62,6 +66,7 @@ const ADD_BOOK = gql`
       summary
       description
       author
+      rating
       status
       user {
         id
@@ -89,6 +94,7 @@ const UPDATE_BOOK = gql`
     $summary: String!
     $description: String!
     $author: String!
+    $rating: Float!
     $status: BookStatusUpdate
   ) {
     updateBook(
@@ -98,6 +104,7 @@ const UPDATE_BOOK = gql`
       summary: $summary
       description: $description
       author: $author
+      rating: $rating
       status: $status
     ) {
       id
@@ -106,6 +113,7 @@ const UPDATE_BOOK = gql`
       summary
       description
       author
+      rating
       status
       user {
         id

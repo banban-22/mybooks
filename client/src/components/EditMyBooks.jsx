@@ -90,97 +90,88 @@ const EditMyBooks = ({ book }) => {
       </button>
 
       {isFormOpen && (
-        <div className="flex flex-col items-center justify-ceneter gap-5 mt-5 rounded-lg w-full mx-auto p-x-5">
+        <div className="flex flex-col justify-ceneter gap-5 mt-5 rounded-lg w-full">
           <form onSubmit={onSubmit}>
             {/* Input Title */}
-            <div className="mb-3">
-              <label htmlFor="" className="pr-14">
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="pr-10">
                 Title
               </label>
               <input
                 type="text"
                 id="title"
                 value={title}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
             {/* Input Author */}
-            <div className="mb-3 flex items-center">
-              <label
-                htmlFor=""
-                className="pr-6 items-center align-center h-auto"
-              >
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="">
                 Author
               </label>
               <input
                 type="text"
                 id="author"
                 value={author}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setAuthor(e.target.value)}
               />
             </div>
 
             {/* Input Image */}
-            <div className="mb-3 flex items-center">
-              <label
-                htmlFor=""
-                className="pr-6 items-center align-center h-auto"
-              >
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="text-sm">
                 Image URL
               </label>
               <input
                 type="text"
                 id="image"
                 value={image}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
 
             {/* Input Description */}
-            <div className="mb-3 flex items-center">
-              <label
-                htmlFor=""
-                className="pr-6 items-center align-center h-auto"
-              >
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="text-sm">
                 Description
               </label>
               <textarea
                 type="text"
                 id="description"
                 value={description}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
             {/* Input Summary */}
-            <div className="mb-3 flex items-center">
+            <div className="mb-3 flex items-center justify-between">
               <label
                 htmlFor=""
                 className="pr-6 items-center align-center h-auto"
               >
-                Summary Note
+                Note
               </label>
               <textarea
                 type="text"
                 id="summary"
                 value={summary}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setSummary(e.target.value)}
               />
             </div>
 
             {/* Input Status */}
-            <div className="mb-3 flex items-center">
-              <label htmlFor="" className="pr-5 mr-10">
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="">
                 Status
               </label>
               <select
-                className="border-2 border-gray-200 p-3 outline-none rounded-xl"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 name="status"
                 id="status"
                 value={status}
@@ -193,18 +184,15 @@ const EditMyBooks = ({ book }) => {
             </div>
 
             {/* Input Created_at */}
-            <div className="mb-3 flex items-center">
-              <label
-                htmlFor=""
-                className="pr-6 items-center align-center h-auto"
-              >
-                Create Date
+            <div className="mb-3 flex items-center justify-between">
+              <label htmlFor="" className="flex">
+                Create At
               </label>
               <input
                 type="date"
                 id="createdAt"
                 value={createdAt}
-                className="border-2 border-gray-200 p-3 rounded outline-none"
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
                 onChange={(e) => setCreatedAt(e.target.value)}
               />
             </div>

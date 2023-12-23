@@ -22,8 +22,13 @@ const Books = () => {
     try {
       const response = await fetch(API_ENDPOINT);
       const data = await response.json();
-      setBookData(data.items || []);
+      setBookData((prevData) => [...prevData, ...(data.items || [])]);
       setTotalItems(data.totalItems || 0);
+
+      if (data.items && data.items.length === itemsPerPage) {
+        setCurrentPage((prevPage) => prevPage + 1);
+        debounceFetchBook();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -81,9 +86,9 @@ const Books = () => {
       </form>
 
       <div className="grid grid-cols-5 grid-flow-row gap-4 w-4/5 mx-auto">
-        {bookData.map((item) => (
+        {bookData.map((item, index) => (
           <Link
-            key={item.id}
+            key={item.id || index}
             to={`/books/${data.user?.id}/${item.id}`}
             className="border max-w-sm py-4 px-5 rounded-lg"
           >

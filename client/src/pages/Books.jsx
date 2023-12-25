@@ -88,7 +88,7 @@ const Books = () => {
       <div className="grid grid-cols-5 grid-flow-row gap-4 w-4/5 mx-auto">
         {bookData.map((item, index) => (
           <Link
-            key={item.id || index}
+            key={`${item.id}-${index}`}
             to={`/books/${data.user?.id}/${item.id}`}
             className="border max-w-sm py-4 px-5 rounded-lg"
           >

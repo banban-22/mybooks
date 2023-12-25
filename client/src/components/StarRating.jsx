@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import Star from './Star';
 
-const Rating = ({ max, current, onRate, disableInteraction = false }) => {
-  // const [current, setCurrent] = useState(0);
+const StarRating = ({ max, current, onRate, disableInteraction = false }) => {
   const [hoveredStar, setHoveredStar] = useState(null);
-  // const lightStar = current;
-  // const darkStar = max - lightStar;
 
   const handleStarClick = (rating) => {
     onRate(rating);
@@ -24,12 +21,6 @@ const Rating = ({ max, current, onRate, disableInteraction = false }) => {
       className="flex justify-start w-24"
       onMouseLeave={handleRatingMouseLeave}
     >
-      {/* {[...Array(lightStar)].map((_, index) => (
-        <Star key={index} style={{ color: 'gold' }} />
-      ))}
-      {[...Array(darkStar)].map((_, index) => (
-        <Star key={index} style={{ color: '#cfcfcf' }} />
-      ))} */}
       {[...Array(max)].map((_, index) => (
         <Star
           key={index}
@@ -50,4 +41,4 @@ const Rating = ({ max, current, onRate, disableInteraction = false }) => {
     </div>
   );
 };
-export default Rating;
+export default StarRating;

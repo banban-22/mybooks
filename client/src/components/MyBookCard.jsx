@@ -16,7 +16,6 @@ const MyBookCard = ({ book }) => {
     summary,
     created_at,
   } = book;
-  console.log(rating);
 
   const renderDescription = () => {
     const originalDescription = description;

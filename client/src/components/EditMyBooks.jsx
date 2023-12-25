@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { GET_BOOK, UPDATE_BOOK } from '../mutations/bookQueries';
+import StarRating from './StarRating';
 
 const EditMyBooks = ({ book }) => {
-  console.log(book.id);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [title, setTitle] = useState(book.title || '');
   const [author, setAuthor] = useState(book.author || '');
   const [description, setDescription] = useState(book.description || '');
   const [summary, setSummary] = useState(book.summary || '');
+  const [rating, setRating] = useState(book.rating || 0);
   const [image, setImage] = useState(book.image || '');
   const [createdAt, setCreatedAt] = useState(book.created_at || '');
   const [status, setStatus] = useState(() => {
@@ -32,6 +33,7 @@ const EditMyBooks = ({ book }) => {
       image,
       description,
       status,
+      rating,
       summary,
       createdAt,
     },
@@ -48,13 +50,15 @@ const EditMyBooks = ({ book }) => {
       image,
       description,
       status,
+      rating,
       summary,
       createdAt,
     });
 
     const formattedDate = new Date(createdAt).toISOString().split('T')[0];
+    console.log(formattedDate);
+
     try {
-      console.log('Before calling updateBook');
       const result = await updateBook({
         variables: {
           id: book.id,
@@ -63,12 +67,12 @@ const EditMyBooks = ({ book }) => {
           image,
           description,
           summary,
+          rating,
           status,
           createdAt: formattedDate,
         },
       });
-      console.log('After calling updateBook');
-      console.log(result); // Check the result in the console
+      console.log(result);
     } catch (error) {
       console.error('Update error:', error);
     }
@@ -92,6 +96,20 @@ const EditMyBooks = ({ book }) => {
       {isFormOpen && (
         <div className="flex flex-col justify-ceneter gap-5 mt-5 rounded-lg w-full">
           <form onSubmit={onSubmit}>
+            {/* Input Rating */}
+            <div className="mb-3 flex items-center justify-start">
+              <label htmlFor="" className="pr-10">
+                Rating
+              </label>
+              <input
+                type="number"
+                id="rating"
+                value={rating}
+                className="border-2 border-gray-200 p-3 rounded-lg outline-none w-4/5"
+                onChange={(e) => setRating(parseFloat(e.target.value))}
+                max={5}
+              />
+            </div>
             {/* Input Title */}
             <div className="mb-3 flex items-center justify-between">
               <label htmlFor="" className="pr-10">
@@ -210,8 +228,3 @@ const EditMyBooks = ({ book }) => {
   );
 };
 export default EditMyBooks;
-
-//   const { author, title, image, description, status, summary, created_at } =
-//     book;
-
-// http://books.google.com/books/publisher/content?id=urbSDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70xiP1UDVjmeXr8sZgsUlPWVdibUKPwtLpgbsoGVWqIj-5hd8rk34n3jxWSOSfWYBWHicpbaMgECRuENStBjvhmSu_J3EwLiN7WZK1gyEhHyxcio21JSp_EAUzq0voPalVNBK4p&source=gbs_api

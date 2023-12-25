@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import StarRating from './StarRating';
+import Star from './Star';
 import EditMyBooks from './EditMyBooks';
 
 const MyBooksDetails = ({ book }) => {
@@ -13,8 +13,8 @@ const MyBooksDetails = ({ book }) => {
     summary,
     created_at,
   } = book;
+
   console.log(book);
-  const [userRating, setUserRating] = useState(0);
 
   const renderDescription = () => {
     return { __html: description };
@@ -38,13 +38,18 @@ const MyBooksDetails = ({ book }) => {
         <div className="w-3/5">
           <h2 className="text-4xl font-black">{title}</h2>
           <p className="text-xl text-gray-400">{author}</p>
-          <div className="flex gap-2">
-            <StarRating
-              max={5}
-              current={userRating || 0}
-              onRate={(rating) => setUserRating(rating)}
+          <div className="flex gap-2 w-[17rem] items-center ">
+            <Star
+              max={1}
+              current={rating || 'No Rate'}
+              style={{
+                color: rating ? 'gold' : '#cfcfcf',
+                width: '2rem',
+              }}
             />
-            {/* <p className="text-gray-400">{formatDate}</p> */}
+            <p className="font-bold">{rating || 'No Rate'}</p>
+            <p className="text-gray-400">&#124;</p>
+            <p className="text-gray-400">{formatDate}</p>
           </div>
 
           <hr className="mt-5" />

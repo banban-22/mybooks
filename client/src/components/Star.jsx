@@ -16,7 +16,7 @@ const Star = (props) => {
       viewBox="0 0 576 512"
       onClick={disableInteraction ? null : onClick}
       onMouseEnter={disableInteraction ? null : onHover}
-      onMouseLeave={() => onHover(null)}
+      onMouseLeave={onHover}
     >
       <path
         fill={color}

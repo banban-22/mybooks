@@ -25,7 +25,7 @@ const AddBooks = ({ bookDetails }) => {
           summary: '',
           description: bookDetails.volumeInfo.description || '',
           author: bookDetails.volumeInfo.authors?.join(', '),
-          rating: '',
+          rating: 0,
           status: 'completed',
           userId: userId,
         },

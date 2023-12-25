@@ -49,7 +49,7 @@ const MyBooksDetails = ({ book }) => {
             />
             <p className="font-bold">{rating || 'No Rate'}</p>
             <p className="text-gray-400">&#124;</p>
-            <p className="text-gray-400">{formatDate}</p>
+            {/* <p className="text-gray-400">{formatDate}</p> */}
           </div>
 
           <hr className="mt-5" />

@@ -34,7 +34,7 @@ const Books = () => {
     }
   };
 
-  // Waiting 500ms for searching
+  // Waiting 1000ms for searching
   const debounce = (func, delay) => {
     let timer;
     return function (...args) {
